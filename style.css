@@ -1,0 +1,455 @@
+/* style.css */
+
+/* 全体レイアウト */
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #f5f5f7;
+  color: #222;
+}
+
+.header {
+  padding: 16px 24px;
+  background: #ffffff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.subtitle {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: #666;
+}
+
+.main {
+  max-width: 960px;
+  margin: 24px auto 80px;
+  padding: 0 16px;
+}
+
+.panel {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+/* ファイル入力ボタン */
+.file-label {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 999px;
+  background: #0078d4;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.file-label input[type="file"] {
+  display: none;
+}
+
+.file-info {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #555;
+}
+
+/* プレビュー */
+.preview-wrapper {
+  margin-top: 8px;
+  border-radius: 12px;
+  background: #e5e5ea;
+  padding: 12px;
+  display: inline-block;
+  max-width: 200px;   /* プレビュー枠の最大幅 */
+  margin: 0 auto;     /* 真ん中寄せ */
+}
+
+#preview-canvas {
+  display: block;
+  max-width: 100%;
+  background: #ffffff;
+}
+
+/* フッター */
+.footer {
+  padding: 16px;
+  background: #ffffff;
+  border-top: 1px solid #ddd;
+  text-align: center;
+}
+
+.banner-placeholder {
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: 1px dashed #ccc;
+  font-size: 13px;
+  color: #777;
+  margin-bottom: 8px;
+}
+
+.footer-note {
+  font-size: 11px;
+  color: #999;
+  margin: 0;
+}
+.primary-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 999px;
+  border: none;
+  background: #10a37f;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.primary-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.note {
+  font-size: 12px;
+  color: #666;
+  margin-top: 8px;
+}
+.primary-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 999px;
+  border: none;
+  background: #10a37f;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.primary-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* 追加：サブボタン */
+.secondary-btn {
+  display: inline-block;
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: none;
+  background: #0078d4;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.secondary-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.small-preview {
+  margin-top: 8px;
+}
+
+#icon-512-preview {
+  display: block;
+  max-width: 128px;
+  max-height: 128px;
+}
+/* 横並びレイアウト */
+.row {
+  display: flex;
+  gap: 24px;        /* ブロックの間の余白 */
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+/* 1つの幅を50%に */
+.half {
+  flex: 1;
+}
+
+/* プレビューの枠サイズを調整 */
+.preview-wrapper {
+  max-width: 180px;   /* 小さくする */
+  margin: 0 auto;     /* 真ん中寄せ */
+}
+/* 区切り線（薄め） */
+.divider-light {
+  border: none;
+  border-top: 1px solid #eee;
+  margin: 16px 0;
+}
+
+/* 機能選択ボタン */
+.tool-selector {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.tool-selector-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tool-tab {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid #ccc;
+  background: #f5f5f5;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.tool-tab.active {
+  border-color: #10a37f;
+  background: #e0f5ef;
+}
+
+/* ツールパネルの表示切替 */
+.tool-section {
+  display: none;
+}
+
+.tool-section.active {
+  display: block;
+}
+/* iOS 背景色コントロール */
+.ios-bg-control {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.ios-bg-label {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* 白 / グレー のプリセットボタン */
+.bg-preset-btn {
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid #ccc;
+  background: #f5f5f5;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.bg-preset-btn.active {
+  border-color: #10a37f;
+  background: #e0f5ef;
+}
+
+/* カラーピッカー */
+.ios-bg-picker {
+  width: 36px;
+  height: 24px;
+  padding: 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* 現在の色コード表示 */
+.ios-bg-value {
+  font-size: 12px;
+  color: #555;
+}
+.ios-main-preview {
+  max-width: 260px;
+  margin-top: 12px;
+}
+
+#ios-main-preview {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+/* カスタムサイズ用 */
+.custom-size-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.custom-size-label {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.custom-size-input {
+  width: 90px;
+  padding: 4px 6px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.custom-size-hint {
+  font-size: 12px;
+  color: #666;
+}
+
+/* カスタムプレビューは少し大きめに */
+.custom-preview {
+  max-width: 220px;
+  margin-top: 12px;
+}
+
+#custom-preview-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+/* ---- 背景透過ツール ---- */
+
+.bg-strength-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  margin-bottom: 8px;
+}
+
+.bg-strength-label {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.bg-strength-range {
+  flex: 1 1 160px;
+}
+
+.bg-strength-text {
+  font-size: 12px;
+  color: #555;
+}
+
+/* 透過プレビュー用 */
+.bg-preview {
+  max-width: 260px;
+  margin-top: 12px;
+}
+
+#bg-preview-canvas {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  /* 透過部分がわかるようにチェッカーパターン */
+  background-image: linear-gradient(45deg, #eee 25%, transparent 25%),
+    linear-gradient(-45deg, #eee 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #eee 75%),
+    linear-gradient(-45deg, transparent 75%, #eee 75%);
+  background-size: 16px 16px;
+  background-position: 0 0, 0 8px, 8px -8px, -8px 0;
+}
+
+.bg-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+.top-row {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.upload-card,
+.preview-card {
+  flex: 1;
+  min-width: 0;
+}
+.tool-section {
+  display: none;
+  margin-top: 24px;
+}
+
+.tool-section.active {
+  display: block;
+}
+/* 画面下に固定されるバナー */
+.banner-fixed {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 72px;              /* 必要なら 60〜90 の範囲で調整 */
+  z-index: 100;
+
+  background: #f5f5f5;
+  border-top: 1px solid #ddd;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 12px;
+  color: #666;
+}
+
+/* コンテンツがバナーの裏に隠れないように下に余白を足す */
+main.container {
+  padding-bottom: 80px;       /* banner-fixed の height より少し小さめでOK */
+}
+.page-header {
+  margin-bottom: 16px;
+  /* position: static;  ← 念のため、固定しない */
+}
+.install-button {
+  margin-left: 12px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: none;
+  background: #4CAF50;
+  color: white;
+  cursor: pointer;
+}
+
+.install-button:hover {
+  background: #43a047;
+}
+/* --- 画面下の固定バナー --- */
+.banner-fixed {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;              /* 高さは後で調整できる */
+  background: #f5f5f5;
+  border-top: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  font-size: 14px;
+  color: #555;
+}
+
+/* バナーが被らないように下に余白を作る */
+body {
+  padding-bottom: 70px;      /* バナー高さ + 10px */
+}

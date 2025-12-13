@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="icon-tanuki.png">
+    <!-- ★★★ AdSense 所有権確認コード ★★★ -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4945908553413164"
+     crossorigin="anonymous"></script>
+  <title>背景透過+icon工房</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json" />
+
+</head>
+<main class="container">
+
+  <header class="page-header">
+    <h1 class="title">
+     背景透過＋icon工房
+     <button id="install-btn" class="install-button">ショートカットを作る</button>
+    </h1>
+  </header>
+
+<!-- 1 + 2 を横並びにするコンテナ -->
+<div class="row">
+
+  <!-- 1. 元画像アップロード（左カラム） -->
+  <section class="panel half">
+    <h2>1. 元画像をアップロード</h2>
+    <p>※ できれば 1024×1024 PNG（背景透過）推奨</p>
+
+    <label class="file-label">
+      <input
+        type="file"
+        id="file-input"
+        accept="image/png,image/jpeg"
+      />
+      画像ファイルを選ぶ
+    </label>
+
+    <div id="file-info" class="file-info">
+      ファイルが未選択です
+    </div>
+  </section>
+
+  <!-- 2. プレビュー（右カラム） -->
+  <section class="panel half">
+    <h2>2. ここに元画像のプレビューが表示されます</h2>
+    <div class="preview-frame">
+      <canvas id="preview-canvas"></canvas>
+    </div>
+    
+  </section>
+
+</div>
+
+<!-- ▼ この下が「機能を選ぶ」ボタン（全幅） -->
+<div class="tool-selector">
+  <p class="note">使いたい機能を選んでください。</p>
+  <div class="tool-selector-buttons">
+    <button class="tool-tab active" data-tool-tab="android">
+      Android用アイコン
+    </button>
+    <button class="tool-tab" data-tool-tab="ios">
+      iPhone用アイコン
+    </button>
+    <button class="tool-tab" data-tool-tab="custom">
+      サイズを選んで作成
+    </button>
+    <button class="tool-tab" data-tool-tab="bg">
+      背景透過
+    </button>
+  </div>
+</div>
+
+<!-- Android 用ツール（最初に表示される） -->
+<section id="tool-android" class="tool-section active">
+  <h2>Android 用アイコンツール</h2>
+  <p>
+    まずは 512×512 のアイコンを1枚作成して仕上がりを確認できます。<br />
+    問題なければ Android 用の各サイズを一括で生成してください。
+  </p>
+
+  <!-- 512 生成 ＋ プレビュー ＋ 任意DL -->
+  <button id="btn-generate-512" class="primary-btn" disabled>
+    512×512 アイコンを生成
+  </button>
+
+  <div class="preview-wrapper small-preview">
+    <img
+      id="icon-512-preview"
+      alt="512×512 アイコンのプレビュー"
+    />
+  </div>
+
+  <button id="btn-download-512" class="secondary-btn" disabled>
+    この 512×512 アイコンをダウンロード
+  </button>
+
+  <p id="download-message" class="note"></p>
+
+  <hr class="divider-light" />
+
+  <!-- Android 一式 -->
+  <h3>Android アイコン一式（ZIP）</h3>
+  <p>
+    作成されるサイズ：48 / 72 / 96 / 144 / 192 / 512 px
+  </p>
+
+  <button id="btn-generate-android-set" class="primary-btn" disabled>
+    Android アイコン一式を生成
+  </button>
+
+  <button id="btn-download-android-set" class="secondary-btn" disabled>
+    Android アイコン一式（ZIP）をダウンロード
+  </button>
+
+  <p id="android-message" class="note"></p>
+</section>
+
+<!-- iPhone 用ツール -->
+<section id="tool-ios" class="tool-section">
+  <h2>iPhone 用アイコンツール</h2>
+  <p>
+    iOS 用のアプリアイコンを作成します。<br />
+    iPhone では透過アイコンが使えないため、背景色をつけた画像を作成します。
+  </p>
+
+  <!-- 背景色の設定 -->
+  <div class="ios-bg-control">
+    <span class="ios-bg-label">背景色：</span>
+
+    <!-- プリセットボタン -->
+    <button
+      type="button"
+      class="bg-preset-btn active"
+      data-bg-color="#ffffff"
+    >
+      白
+    </button>
+    <button
+      type="button"
+      class="bg-preset-btn"
+      data-bg-color="#d9d9d9"
+    >
+      グレー
+    </button>
+
+    <!-- カラーピッカー -->
+    <input
+      type="color"
+      id="ios-bg-color"
+      value="#ffffff"
+      class="ios-bg-picker"
+    />
+
+    <!-- 現在の色コード表示 -->
+    <span id="ios-bg-value" class="ios-bg-value">#FFFFFF</span>
+  </div>
+
+  <p class="note">
+    ※ プリセット（白 / グレー）をクリックするか、カラーピッカーで自由に色を選べます。
+  </p>
+
+  <hr class="divider-light" />
+
+  <!-- 1024×1024 プレビュー -->
+  <h3>1024×1024 アイコン（プレビュー＆ダウンロード）</h3>
+
+  <button id="btn-generate-ios-main" class="primary-btn" disabled>
+    1024×1024 アイコンを生成
+  </button>
+
+  <div class="preview-wrapper ios-main-preview">
+    <img
+      id="ios-main-preview"
+      alt="iOS 1024×1024 アイコンのプレビュー"
+    />
+  </div>
+
+  <button id="btn-download-ios-main" class="secondary-btn" disabled>
+    この 1024×1024 アイコンをダウンロード
+  </button>
+
+  <p id="ios-main-message" class="note"></p>
+
+  <hr class="divider-light" />
+
+  <!-- iOS 一式 -->
+  <h3>iPhone / iPad 用アイコン一式（ZIP）</h3>
+  <p>
+    作成されるサイズ（px）：20 / 29 / 40 / 60 / 76 / 83.5 などの @2x, @3x をまとめて生成します。
+  </p>
+
+  <button id="btn-generate-ios-set" class="primary-btn" disabled>
+    iOS アイコン一式を生成
+  </button>
+
+  <button id="btn-download-ios-set" class="secondary-btn" disabled>
+    iOS アイコン一式（ZIP）をダウンロード
+  </button>
+
+  <p id="ios-set-message" class="note"></p>
+</section>
+
+
+<!-- 任意サイズ変換ツール（枠だけ） -->
+<!-- サイズを選んで作成 -->
+<section id="tool-custom" class="tool-section">
+  <h2>サイズを選んで作成</h2>
+  <p>
+    正方形のサイズ（px）を指定して、任意サイズのアイコンを1枚作成します。<br />
+    PNG の透過はそのまま維持されます。
+  </p>
+
+  <!-- サイズ入力 -->
+  <div class="custom-size-row">
+    <label for="custom-size-input" class="custom-size-label">
+      サイズ（px）：
+    </label>
+    <input
+      id="custom-size-input"
+      type="number"
+      min="16"
+      max="2048"
+      step="1"
+      value="512"
+      class="custom-size-input"
+    />
+    <span class="custom-size-hint">※ 16〜2048 の整数</span>
+  </div>
+
+  <!-- 生成ボタン -->
+  <button id="btn-generate-custom" class="primary-btn" disabled>
+    このサイズでアイコンを生成
+  </button>
+
+  <!-- プレビュー -->
+  <div class="preview-wrapper custom-preview">
+    <img
+      id="custom-preview-img"
+      alt="カスタムサイズアイコンのプレビュー"
+    />
+  </div>
+
+  <!-- ダウンロードボタン -->
+  <button id="btn-download-custom" class="secondary-btn" disabled>
+    このアイコンをダウンロード
+  </button>
+
+  <p id="custom-message" class="note"></p>
+</section>
+
+
+<!-- 背景透過ツール -->
+<section id="tool-bg" class="tool-section">
+  <h2>背景透過ツール</h2>
+  <p>
+    単色に近い背景を自動で検出して透過画像を作成します。<br />
+    イラストの輪郭を残しつつ、アイコン用の素材を作ることを想定しています。
+  </p>
+
+  <!-- 強さ調整 -->
+  <div class="bg-strength-row">
+    <label for="bg-strength-range" class="bg-strength-label">
+      背景の消し具合：
+    </label>
+    <input
+      type="range"
+      id="bg-strength-range"
+      min="0"
+      max="100"
+      value="50"
+      class="bg-strength-range"
+    />
+    <span id="bg-strength-text" class="bg-strength-text">標準</span>
+  </div>
+
+  <p class="note">
+    数値が小さいほど輪郭優先（背景が少し残ることあり）、大きいほど背景を強く消します。背景以外の色が変わることがあります。確認してから使ってくださいね。
+  </p>
+
+  <!-- 生成ボタン -->
+  <button id="btn-generate-bg-removed" class="primary-btn" disabled>
+    背景透過画像を生成
+  </button>
+
+  <!-- プレビュー（チェッカーパターンの上に描画） -->
+  <div class="preview-wrapper bg-preview">
+    <canvas id="bg-preview-canvas"></canvas>
+  </div>
+
+  <!-- ダウンロード＆元画像に反映 -->
+  <div class="bg-actions">
+    <button id="btn-download-bg" class="secondary-btn" disabled>
+      透過画像としてダウンロード
+    </button>
+
+    <button id="btn-apply-bg" class="secondary-btn" disabled>
+      この画像を元画像として使う
+    </button>
+  </div>
+
+  <p id="bg-message" class="note"></p>
+</section>
+
+
+  </main>
+
+  <!-- ▼ 画面下に固定されるバナー -->
+<section class="banner-fixed" aria-label="広告">
+  ここにバナー広告（将来 AdSense など）を配置
+</section>
+
+  <!-- JSZip → main.js の順で読み込む -->
+  <script src="https://cdn.jsdelivr.net/npm/jszip@3.7.1/dist/jszip.min.js"></script>
+  <script src="main.js"></script>
+
+  <script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("service-worker.js");
+}
+</script>
+
+</body>
+</html>
